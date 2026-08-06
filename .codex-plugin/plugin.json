@@ -5,7 +5,6 @@
   "author": {
     "name": "WKND"
   },
-  "skills": "./skills/",
   "keywords": [
     "code-review",
     "pull-requests",

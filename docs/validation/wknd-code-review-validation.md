@@ -5,10 +5,9 @@ Run a WKND code review against each fixture. Confirm:
 - Natural invocation works.
 - Relevant references are loaded.
 - Relevant specialists are selected.
-- Plugin manifest points at `./skills/`.
-- Public skill exists at `skills/wknd-code-review/SKILL.md`.
-- Skill invocation metadata exists at `skills/wknd-code-review/agents/openai.yaml`.
-- Specialist prompt paths resolve under `skills/wknd-code-review/agents/`.
+- Public skill exists at `SKILL.md`.
+- Skill invocation metadata exists at `agents/openai.yaml`.
+- Specialist prompt paths resolve under `agents/`.
 - Findings use evidence and confidence.
 - Default report order is Findings, Decision, Summary, Action Items, Verification Evidence, Residual Risk.
 - GitHub mode drafts by default.
@@ -38,13 +37,13 @@ Date: 2026-08-06
 
 | Check | Result | Evidence |
 | --- | --- | --- |
-| File inventory | Passed | Sorted `find .codex-plugin skills fixtures docs -maxdepth 4 -type f` output showed the plugin manifest, packaged WKND skill, coordinator, 10 specialist reviewers, reference library, fixtures, spec, plan, and validation doc. |
-| Plugin skill path | Passed | `.codex-plugin/plugin.json` declares `"skills": "./skills/"`, and `skills/wknd-code-review/SKILL.md` is the only `SKILL.md` in the repository. |
-| Plugin validator | Passed | `PYTHONPATH=/tmp/wknd-pyyaml python3 /Users/wesleychang/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py /Users/wesleychang/projects/wknd-code-review` passed after installing PyYAML into `/tmp/wknd-pyyaml`. |
-| Natural invocation metadata | Passed | `skills/wknd-code-review/agents/openai.yaml` includes `allow_implicit_invocation: true` and a default prompt starting with "Run a WKND code review"; `skills/wknd-code-review/SKILL.md` defines report, draft, and explicit-post modes. |
-| Specialist schemas | Passed | Every `skills/wknd-code-review/agents/*-reviewer.md` file includes `severity_recommendation`, `confidence`, `evidence`, `fix_direction`, and `residual_risk`. |
-| Canonical report order | Passed | `skills/wknd-code-review/SKILL.md`, `skills/wknd-code-review/references/output-modes.md`, and this validation doc use Findings, Decision, Summary, Action Items, Verification Evidence, Residual Risk. |
-| Risk labels | Passed | `skills/wknd-code-review/agents/coordinator.md` and `skills/wknd-code-review/references/review-context-gathering.md` preserve public API behavior and concurrency/retries/idempotency routing guidance. |
+| File inventory | Passed | Sorted `find .codex-plugin agents references fixtures docs -maxdepth 3 -type f` output showed the skill metadata, coordinator, 10 specialist reviewers, reference library, fixtures, spec, plan, and validation doc. |
+| Public skill path | Passed | `SKILL.md` is the only `SKILL.md` in the repository, matching the single-skill project layout. |
+| Skill validator | Passed | `PYTHONPATH=/tmp/wknd-pyyaml python3 /Users/wesleychang/.codex/skills/.system/skill-creator/scripts/quick_validate.py /Users/wesleychang/projects/wknd-code-review` passed after installing PyYAML into `/tmp/wknd-pyyaml`. |
+| Natural invocation metadata | Passed | `agents/openai.yaml` includes `allow_implicit_invocation: true` and a default prompt starting with "Run a WKND code review"; `SKILL.md` defines report, draft, and explicit-post modes. |
+| Specialist schemas | Passed | Every `agents/*-reviewer.md` file includes `severity_recommendation`, `confidence`, `evidence`, `fix_direction`, and `residual_risk`. |
+| Canonical report order | Passed | `SKILL.md`, `references/output-modes.md`, and this validation doc use Findings, Decision, Summary, Action Items, Verification Evidence, Residual Risk. |
+| Risk labels | Passed | `agents/coordinator.md` and `references/review-context-gathering.md` preserve public API behavior and concurrency/retries/idempotency routing guidance. |
 
 ### Fixture Dry-Runs
 
