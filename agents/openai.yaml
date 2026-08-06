@@ -1,0 +1,7 @@
+interface:
+  display_name: "WKND Code Review"
+  short_description: "Deep structured PR review workflow"
+  default_prompt: "Use $wknd-code-review to review this pull request with project context, structured severity labels, architecture analysis, line-level findings, and a merge decision."
+
+policy:
+  allow_implicit_invocation: true
