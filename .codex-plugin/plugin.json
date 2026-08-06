@@ -1,0 +1,31 @@
+{
+  "name": "wknd-code-review",
+  "version": "0.1.0",
+  "description": "High-signal production code review workflow with coordinator-led specialist review.",
+  "author": {
+    "name": "WKND"
+  },
+  "keywords": [
+    "code-review",
+    "pull-requests",
+    "security",
+    "production-readiness"
+  ],
+  "interface": {
+    "displayName": "WKND Code Review",
+    "shortDescription": "Coordinator-led production PR review",
+    "longDescription": "High-signal production code reviews with coordinator-led specialist passes, balanced severity calibration, GitHub-ready drafts, and explicit-only posting.",
+    "developerName": "WKND",
+    "category": "Productivity",
+    "capabilities": [
+      "Review",
+      "GitHub drafts",
+      "Specialist analysis"
+    ],
+    "defaultPrompt": [
+      "Run a WKND code review.",
+      "Run a WKND code review and draft GitHub comments.",
+      "Run a WKND code review and post your findings."
+    ]
+  }
+}
