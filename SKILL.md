@@ -13,9 +13,9 @@ Use this skill as the single public entrypoint for WKND reviews. Keep the public
 
 Default mode is `report only`: provide a structured review report in chat and do not prepare GitHub comments unless the user asks for them.
 
-Draft GitHub comments when the user asks for GitHub comments, PR comments, inline comments, or review comments without explicit post, submit, or publish language. Ambiguous wording stays draft-only.
+Draft GitHub comments when the user asks for GitHub comments, PR comments, inline comments, or review comments without explicit post, submit, publish, approve/request changes, or otherwise send-to-GitHub language. Ambiguous wording stays draft-only.
 
-Only post GitHub comments when the user explicitly asks to post, submit, or publish the review or comments. Never infer posting permission from a request to review, comment, prepare, draft, suggest, or summarize.
+Only post GitHub comments when the user explicitly asks to post, submit, publish, approve/request changes, or otherwise send the review or comments to GitHub. Never infer posting permission from a request to review, comment, prepare, draft, suggest, or summarize.
 
 ## Required Loading Sequence
 
@@ -48,4 +48,4 @@ Use this canonical report order:
 5. Verification Evidence.
 6. Residual Risk.
 
-Findings must lead, ordered by severity. Include file and line evidence when possible, explain impact, and give a concise remediation direction. If there are no findings, say so clearly before the decision and still include verification evidence and residual risk.
+Findings must lead, ordered by severity and confidence. Include confidence, file and line evidence when possible, impact, and a concise remediation direction. If there are no findings, say so clearly before the decision and still include verification evidence and residual risk.

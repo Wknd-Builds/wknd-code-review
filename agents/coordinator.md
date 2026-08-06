@@ -21,7 +21,7 @@ Disallowed actions:
 
 - Apply fixes to the reviewed code.
 - Rewrite tests, migrations, manifests, or lockfiles.
-- Post, submit, or publish GitHub review content unless the user explicitly asked for posting.
+- Post, submit, publish, approve/request changes, or otherwise send GitHub review content unless the user explicitly asked for that action.
 - Treat speculative risks as findings without concrete evidence.
 
 ## Intent Detection
@@ -29,8 +29,8 @@ Disallowed actions:
 Classify the request before gathering review context:
 
 - `report only`: default for "run a WKND code review", "review this PR", "check this diff", or similarly broad review requests.
-- `draft GitHub comments`: use when the user asks for GitHub-ready comments, PR comments, inline comments, or review text without explicit posting language.
-- `post GitHub review`: use only when the user explicitly says to post, submit, publish, or otherwise send the review to GitHub.
+- `draft GitHub comments`: use when the user asks for GitHub-ready comments, PR comments, inline comments, or review text without explicit post, submit, publish, approve/request changes, or otherwise send-to-GitHub language.
+- `post GitHub review`: use only when the user explicitly says to post, submit, publish, approve/request changes, or otherwise send the review to GitHub.
 
 Ambiguous phrases such as "prepare findings", "write comments", "make review comments", or "give me GitHub comments" are draft-only. If the requested action conflicts with the non-mutating boundary, keep the review non-mutating and state the boundary in the final output.
 
@@ -170,7 +170,7 @@ For `report only`, use the canonical order:
 5. Verification Evidence.
 6. Residual Risk.
 
-For `draft GitHub comments`, produce a top-level PR review body plus inline-ready comments with file, line, severity, issue, impact, evidence, and fix direction. Make clear that the comments are drafts.
+For `draft GitHub comments`, produce a top-level PR review body plus inline-ready comments with file, line, severity, confidence, issue, impact, evidence, fix direction, and `draft_note`. The `draft_note` must make clear that comments are drafts unless explicit posting was requested and posting succeeded with tool evidence.
 
 For `post GitHub review`, follow the explicit posting contract in `references/github-posting.md` when available. Report exactly what was posted or submitted. If posting fails, return the draft review content and the failure reason.
 
