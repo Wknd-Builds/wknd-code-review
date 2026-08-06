@@ -1,98 +1,51 @@
 ---
 name: wknd-code-review
-description: Use when reviewing pull requests, diffs, commits, code changes, GitHub PRs, linked issues, Node.js backends, React apps, React Router Framework Mode, Remix-style route modules, tests, architecture, security, performance, maintainability, or merge readiness.
+description: Use when reviewing pull requests, diffs, commits, code changes, GitHub PRs, linked issues, merge readiness, security, data/migration risk, frontend behavior, React Native/Expo changes, CI/deploy risk, observability, dependencies, or production readiness.
 ---
 
 # WKND Code Review
 
-## Overview
+WKND Code Review is a review workflow. Do not edit the reviewed application code during the review. You may inspect, run safe verification commands when appropriate, draft comments, and propose remediation sketches. Implement fixes only when the user makes a separate implementation request.
 
-Run reviews in two passes: first understand the product, intent, architecture, and test strategy; then inspect the changed lines for logic, security, maintainability, and edge cases. The goal is a merge decision with structured feedback, not a list of isolated observations.
+## Invocation Contract
 
-## Load References
+Use this skill as the single public entrypoint for WKND reviews. Keep the public surface concise and load the coordinator and references for operational detail instead of duplicating the full workflow here.
 
-- Read `references/nodejs-review.md` when the diff touches Node.js, server code, config, package/dependency changes, databases, queues, auth, API boundaries, workers, tests, Docker, or runtime behavior.
-- Read `references/react-router-framework-review.md` when the diff touches React Router, Remix-style route modules, `routes.ts`, loaders, actions, fetchers, forms, sessions, cookies, pending UI, route tests, SSR, SPA, SSG, or hydration.
-- Browse primary sources when the user asks for the latest guidance or when reviewing a version-specific framework change.
+Default mode is `report only`: provide a structured review report in chat and do not prepare GitHub comments unless the user asks for them.
 
-## Review Workflow
+Draft GitHub comments when the user asks for GitHub comments, PR comments, inline comments, or review comments without explicit post, submit, or publish language. Ambiguous wording stays draft-only.
 
-1. Establish scope before judging:
-   - Identify base and head commits, changed files, PR title/body, linked issues, design docs, acceptance criteria, and discussion.
-   - Read product docs, README, route maps, domain modules, schema/migrations, and tests relevant to the changed area.
-   - Summarize the intended behavior in your own words. If intent is ambiguous, state the assumption and review against it.
+Only post GitHub comments when the user explicitly asks to post, submit, or publish the review or comments. Never infer posting permission from a request to review, comment, prepare, draft, suggest, or summarize.
 
-2. Learn local conventions:
-   - Inspect nearby files and recent similar changes.
-   - Prefer current project patterns over generic style preferences.
-   - Check whether the PR follows existing boundaries, naming, error handling, validation, state management, and test style.
+## Required Loading Sequence
 
-3. High-level review:
-   - Architecture: ownership boundaries, layering, coupling, data flow, deployment/runtime impact.
-   - Product/spec fit: whether the implementation actually solves the linked issue without surprising adjacent workflows.
-   - Performance: event-loop blocking, query shape, bundle impact, render churn, caching, waterfalls, concurrency, and payload size.
-   - Security/privacy: authz, authn, sessions, CSRF, injection, unsafe redirects, secrets, PII leakage, dependency risk.
-   - Test strategy: coverage for intent, regressions, edge cases, failure paths, integration boundaries, and realistic user flows.
+Read these files before producing the review:
 
-4. Line-by-line pass:
-   - Read every changed hunk and nearby context.
-   - Trace values across caller/callee boundaries, async paths, serialization, request lifetimes, and retries.
-   - Look for missing awaits, stale data, partial failure, race conditions, type lies, unvalidated input, leaked implementation details, and broken invariants.
-   - Verify reported findings against the actual code. Do not speculate as a finding.
+1. `agents/coordinator.md`.
+2. `references/review-context-gathering.md`.
+3. `references/review-decision-model.md`.
+4. `references/output-modes.md`.
+5. Relevant stack and specialist references based on the risk map.
 
-5. Decide:
-   - `Approved`: no blocking or important issues.
-   - `Approved with comments`: only nits, suggestions, learning notes, or praise.
-   - `Changes requested`: any blocking issue, or important issues that materially threaten correctness, security, maintainability, or product behavior.
-   - `Needs clarification`: intent or external constraints are too unclear to fairly approve or request changes.
+Use the coordinator to identify review scope, collect context, route to specialists, calibrate severity, choose the output mode, and produce the final decision.
 
-## Severity Labels
+## Review Posture
 
-| Label | Meaning |
-| --- | --- |
-| 🔴 blocking | Must be fixed before merge |
-| 🟠 important | Should be fixed; may block depending on context |
-| 🟡 nit | Minor style or preference issue |
-| 🔵 suggestion | Optional improvement worth considering |
-| 📚 learning | Educational note for the author |
-| 🌟 praise | Explicitly highlight great work |
+- Establish the intended behavior, linked issue context, base/head range, and affected product workflows before judging the diff.
+- Learn nearby conventions and recent similar changes so findings match the codebase rather than generic preferences.
+- Verify each finding against the actual changed code and surrounding call paths. Do not present speculation as a finding.
+- Focus on correctness, security, data safety, product behavior, deployability, test adequacy, accessibility, performance, observability, and maintainability.
+- Include praise when there is genuinely strong work, but never bury important concerns behind compliments.
 
-## Output Format
+## Output Order
 
-Lead with findings, ordered by severity. Use this shape:
+Use this canonical report order:
 
-```markdown
-**Decision:** Changes requested
+1. Findings.
+2. Decision.
+3. Summary.
+4. Action Items.
+5. Verification Evidence.
+6. Residual Risk.
 
-**Findings**
-- 🔴 blocking [path/to/file.ts:42] The action trusts `userId` from form data, so a user can update another account. Use the authenticated session user instead and add a regression test.
-- 🌟 praise [path/to/file.ts:88] Nice use of the existing route boundary; the data ownership stays local to the account domain.
-
-**Summary**
-One or two sentences about the review scope and overall quality.
-
-**Action Items**
-- Replace client-supplied identity with session-derived identity.
-- Add an integration test for cross-user update rejection.
-
-**Residual Risk**
-Mention anything not verified, such as tests not run, missing environment, or unavailable linked issue.
-```
-
-Rules:
-- Findings must include file and line when possible.
-- Keep each finding actionable: issue, impact, fix direction.
-- Do not bury blocking issues in prose.
-- Include praise when there is genuinely strong work.
-- If there are no findings, say so clearly and list residual risk or test gaps.
-- Avoid style-only comments unless they affect consistency, readability, or future mistakes.
-
-## Common Mistakes
-
-| Mistake | Correction |
-| --- | --- |
-| Reviewing only the diff | Read surrounding code, callers, tests, and product context first. |
-| Treating preferences as blockers | Use blocking only for correctness, security, data loss, severe UX, or merge-breaking maintainability. |
-| Missing test strategy | Judge whether tests prove the intended behavior and important failure modes. |
-| Ignoring linked issues | Confirm the PR solves the stated problem and does not widen scope silently. |
-| Overlooking good work | Add 🌟 praise for clean boundaries, sharp tests, or thoughtful design. |
+Findings must lead, ordered by severity. Include file and line evidence when possible, explain impact, and give a concise remediation direction. If there are no findings, say so clearly before the decision and still include verification evidence and residual risk.
