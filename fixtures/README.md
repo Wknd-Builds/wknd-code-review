@@ -4,6 +4,8 @@ These synthetic PR packets validate WKND code review routing and decision behavi
 
 Use them as manual review inputs before and after skill rewrites. The review workflow must inspect the packet, route only relevant specialists, and avoid editing any reviewed application code.
 
+Fixture paths below are relative to this directory. When invoking from the repository root, use the `fixtures/...` path shown in docs validation, such as `fixtures/auth-bypass-pr.md`.
+
 | Fixture | Required specialist routing | Expected decision |
 | --- | --- | --- |
 | `auth-bypass-pr.md` | appsec/auth, test strategy | Changes requested |

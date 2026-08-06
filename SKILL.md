@@ -25,7 +25,9 @@ Read these files before producing the review:
 2. `references/review-context-gathering.md`.
 3. `references/review-decision-model.md`.
 4. `references/output-modes.md`.
-5. Relevant stack and specialist references based on the risk map.
+5. Relevant stack references based on the risk map: `references/nodejs-typescript.md`, `references/react-router-remix.md`, `references/react-next.md`, `references/prisma-postgres.md`, `references/auth-sessions.md`, `references/testing.md`, `references/ci-deployment.md`, `references/accessibility.md`, `references/browser-performance.md`, `references/observability.md`, `references/dependency-security.md`, and `references/react-native-expo.md`.
+6. Relevant specialist prompts from `agents/`: `agents/appsec-auth-reviewer.md`, `agents/data-migrations-reviewer.md`, `agents/test-strategy-reviewer.md`, `agents/frontend-runtime-reviewer.md`, `agents/accessibility-reviewer.md`, `agents/performance-reviewer.md`, `agents/dependency-supply-chain-reviewer.md`, `agents/ci-deployment-reviewer.md`, `agents/observability-reviewer.md`, and `agents/react-native-expo-reviewer.md`.
+7. `references/github-posting.md` whenever the user asks for GitHub draft comments or explicitly asks to post, submit, publish, approve/request changes, or otherwise send review content to GitHub.
 
 Use the coordinator to identify review scope, collect context, route to specialists, calibrate severity, choose the output mode, and produce the final decision.
 
@@ -49,3 +51,5 @@ Use this canonical report order:
 6. Residual Risk.
 
 Findings must lead, ordered by severity and confidence. Include confidence, file and line evidence when possible, impact, and a concise remediation direction. If there are no findings, say so clearly before the decision and still include verification evidence and residual risk.
+
+For GitHub draft output, include `Top-Level Review Body` and `Inline-Ready Comments` sections. Each inline-ready comment must include `file`, `line`, `severity`, `confidence`, `issue`, `impact`, `evidence`, `fix_direction`, and `draft_note`.

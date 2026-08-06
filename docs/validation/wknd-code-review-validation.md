@@ -5,10 +5,12 @@ Run a WKND code review against each fixture. Confirm:
 - Natural invocation works.
 - Relevant references are loaded.
 - Relevant specialists are selected.
+- Specialist prompt paths resolve under `agents/`.
 - Findings use evidence and confidence.
 - Default report order is findings, decision, summary, action items, verification evidence, residual risk.
 - GitHub mode drafts by default.
 - Posting requires explicit user language.
+- GitHub draft output contains `Top-Level Review Body` plus `Inline-Ready Comments` with `file`, `line`, `severity`, `confidence`, `issue`, `impact`, `evidence`, `fix_direction`, and `draft_note`.
 - Explicit post mode either reports exactly what was posted/submitted or, if posting fails, returns the draft content with the failure reason.
 - No review path edits application code.
 

@@ -93,11 +93,14 @@ Route only to relevant specialists. Give each specialist the smallest packet tha
 | Logging/metrics/tracing/background failure visibility | Route to `observability-reviewer.md`. |
 | Expo/native config/permissions/mobile lifecycle/navigation/storage | Route to `react-native-expo-reviewer.md`. |
 
+Specialist prompt files live alongside this coordinator in `agents/`: `appsec-auth-reviewer.md`, `data-migrations-reviewer.md`, `test-strategy-reviewer.md`, `frontend-runtime-reviewer.md`, `accessibility-reviewer.md`, `performance-reviewer.md`, `dependency-supply-chain-reviewer.md`, `ci-deployment-reviewer.md`, `observability-reviewer.md`, and `react-native-expo-reviewer.md`.
+
 Use local references by default:
 
 - Always load `references/review-context-gathering.md`, `references/review-decision-model.md`, and `references/output-modes.md`.
 - Load `references/nodejs-typescript.md` for Node.js, TypeScript, API, serialization, runtime, or package behavior.
 - Load framework references when relevant: `references/react-router-remix.md`, `references/react-next.md`, `references/prisma-postgres.md`, `references/auth-sessions.md`, `references/testing.md`, `references/ci-deployment.md`, `references/accessibility.md`, `references/browser-performance.md`, `references/observability.md`, `references/dependency-security.md`, and `references/react-native-expo.md`.
+- Load `references/github-posting.md` whenever output may become GitHub draft comments or posted review content.
 - Use current primary docs, changelogs, release notes, or advisories when the review depends on current framework, platform, dependency, security, or deployment behavior.
 
 ## Specialist Packet Format
@@ -170,7 +173,7 @@ For `report only`, use the canonical order:
 5. Verification Evidence.
 6. Residual Risk.
 
-For `draft GitHub comments`, produce a top-level PR review body plus inline-ready comments with file, line, severity, confidence, issue, impact, evidence, fix direction, and `draft_note`. The `draft_note` must make clear that comments are drafts unless explicit posting was requested and posting succeeded with tool evidence.
+For `draft GitHub comments`, produce a top-level PR review body plus inline-ready comments with `file`, `line`, `severity`, `confidence`, `issue`, `impact`, `evidence`, `fix_direction`, and `draft_note`. The `draft_note` must make clear that comments are drafts unless explicit posting was requested and posting succeeded with tool evidence.
 
 For `post GitHub review`, follow the explicit posting contract in `references/github-posting.md` when available. Report exactly what was posted or submitted. If posting fails, return the draft review content and the failure reason.
 
