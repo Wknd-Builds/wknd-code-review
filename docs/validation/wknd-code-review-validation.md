@@ -4,6 +4,7 @@ Run a WKND code review against each fixture. Confirm:
 
 - Natural invocation works.
 - Relevant references are loaded.
+- Frontend reviews load `references/frontend-structure.md` when editable forms, reusable UI, feature components, or tab routing are in scope.
 - Relevant specialists are selected.
 - Public skill exists at `SKILL.md`.
 - Skill invocation metadata exists at `agents/openai.yaml`.
@@ -22,7 +23,7 @@ Run a WKND code review against each fixture. Confirm:
 | --- | --- | --- |
 | `fixtures/auth-bypass-pr.md` | Routes appsec/auth and test strategy. | Changes requested with blocking file/line evidence for trusting request-supplied identity or role. |
 | `fixtures/migration-risk-pr.md` | Routes data/migrations, ci/deployment, and observability. | Changes requested for destructive migration, missing backfill/constraint/index, or deploy-order risk. |
-| `fixtures/frontend-race-pr.md` | Routes frontend runtime and test strategy; routes performance only if payload/render risk is evidenced. | Changes requested or Approved with comments depending on duplicate-submit, rollback, and revalidation evidence. |
+| `fixtures/frontend-race-pr.md` | Routes frontend runtime and test strategy; routes performance only if payload/render risk is evidenced. | Changes requested or Approved with comments depending on duplicate-submit, rollback, revalidation evidence, and whether frontend structure conventions are affected. |
 | `fixtures/dependency-upgrade-pr.md` | Routes dependency/supply-chain, ci/deployment, and test strategy. | Needs clarification or Changes requested when primary changelog/security or engine compatibility evidence is missing. |
 | `fixtures/react-native-permission-pr.md` | Routes React Native/Expo and appsec/auth for privacy-sensitive location data. | Changes requested for permission copy, platform divergence, and native capability/OTA risk. |
 | `fixtures/clean-pr.md` | Routes only locally relevant specialists. | Approved without invented findings; residual risk is short. |
@@ -39,11 +40,12 @@ Date: 2026-08-06
 | --- | --- | --- |
 | File inventory | Passed | Sorted `find .codex-plugin agents references fixtures docs -maxdepth 3 -type f` output showed the skill metadata, coordinator, 10 specialist reviewers, reference library, fixtures, spec, plan, and validation doc. |
 | Public skill path | Passed | `SKILL.md` is the only `SKILL.md` in the repository, matching the single-skill project layout. |
-| Skill validator | Passed | `PYTHONPATH=/tmp/wknd-pyyaml python3 /Users/wesleychang/.codex/skills/.system/skill-creator/scripts/quick_validate.py /Users/wesleychang/projects/wknd-code-review` passed after installing PyYAML into `/tmp/wknd-pyyaml`. |
+| Skill validator | Passed | `PYTHONPATH=/tmp/wknd-pyyaml-current python3 /Users/wesleychang/.codex/skills/.system/skill-creator/scripts/quick_validate.py /Users/wesleychang/projects/wknd-code-review` passed after installing PyYAML into `/tmp/wknd-pyyaml-current`. |
 | Natural invocation metadata | Passed | `agents/openai.yaml` includes `allow_implicit_invocation: true` and a default prompt starting with "Run a WKND code review"; `SKILL.md` defines report, draft, and explicit-post modes. |
 | Specialist schemas | Passed | Every `agents/*-reviewer.md` file includes `severity_recommendation`, `confidence`, `evidence`, `fix_direction`, and `residual_risk`. |
 | Canonical report order | Passed | `SKILL.md`, `references/output-modes.md`, and this validation doc use Findings, Decision, Summary, Action Items, Verification Evidence, Residual Risk. |
 | Risk labels | Passed | `agents/coordinator.md` and `references/review-context-gathering.md` preserve public API behavior and concurrency/retries/idempotency routing guidance. |
+| Frontend structure guidance | Passed | `SKILL.md`, `agents/coordinator.md`, `agents/frontend-runtime-reviewer.md`, and `references/react-router-remix.md` route relevant UI/form/tab changes to `references/frontend-structure.md`. |
 
 ### Fixture Dry-Runs
 

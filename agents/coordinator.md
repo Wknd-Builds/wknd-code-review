@@ -84,7 +84,7 @@ Route only to relevant specialists. Give each specialist the smallest packet tha
 | Schema/migration/query/Prisma/Postgres/backfill | Route to `data-migrations-reviewer.md`. |
 | Public API behavior/contract/serialization/backward compatibility | Load `references/nodejs-typescript.md` or the relevant framework reference. Route to `test-strategy-reviewer.md`, `appsec-auth-reviewer.md`, or `data-migrations-reviewer.md` when the API touches trust, auth, or persistence. |
 | Test files or high-risk untested behavior | Route to `test-strategy-reviewer.md`. |
-| React/React Router/Remix/Next.js/client-server boundary | Route to `frontend-runtime-reviewer.md`. |
+| React/React Router/Remix/Next.js/client-server boundary, frontend structure, route tabs, editable forms, reusable UI components | Route to `frontend-runtime-reviewer.md`. |
 | Concurrency/retries/idempotency/duplicate submits/stale writes/background jobs | Route to `data-migrations-reviewer.md`, `frontend-runtime-reviewer.md`, `test-strategy-reviewer.md`, or `observability-reviewer.md` depending on where the risk occurs. |
 | UI forms/dialogs/focus/semantic changes | Route to `accessibility-reviewer.md`. |
 | Query/runtime/render/bundle/network/mobile performance | Route to `performance-reviewer.md`. |
@@ -99,7 +99,7 @@ Use local references by default:
 
 - Always load `references/review-context-gathering.md`, `references/review-decision-model.md`, and `references/output-modes.md`.
 - Load `references/nodejs-typescript.md` for Node.js, TypeScript, API, serialization, runtime, or package behavior.
-- Load framework references when relevant: `references/react-router-remix.md`, `references/react-next.md`, `references/prisma-postgres.md`, `references/auth-sessions.md`, `references/testing.md`, `references/ci-deployment.md`, `references/accessibility.md`, `references/browser-performance.md`, `references/observability.md`, `references/dependency-security.md`, and `references/react-native-expo.md`.
+- Load framework references when relevant: `references/frontend-structure.md`, `references/react-router-remix.md`, `references/react-next.md`, `references/prisma-postgres.md`, `references/auth-sessions.md`, `references/testing.md`, `references/ci-deployment.md`, `references/accessibility.md`, `references/browser-performance.md`, `references/observability.md`, `references/dependency-security.md`, and `references/react-native-expo.md`.
 - Load `references/github-posting.md` whenever output may become GitHub draft comments or posted review content.
 - Use current primary docs, changelogs, release notes, or advisories when the review depends on current framework, platform, dependency, security, or deployment behavior.
 

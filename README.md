@@ -19,7 +19,7 @@ Default output is report-only. GitHub comments are draft-only unless the user ex
 - `SKILL.md`: public skill entrypoint and loading contract.
 - `agents/coordinator.md`: review coordinator, routing, reconciliation, and output-mode handoff.
 - `agents/*-reviewer.md`: focused specialist reviewer prompts.
-- `references/`: severity, output, posting, stack, and domain review guidance.
+- `references/`: severity, output, posting, frontend structure, stack, and domain review guidance.
 - `fixtures/`: synthetic PR packets for validation.
 - `docs/validation/wknd-code-review-validation.md`: validation checklist and recorded fixture dry-runs.
 

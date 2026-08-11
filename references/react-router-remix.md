@@ -13,6 +13,8 @@ Primary sources:
 
 Use this reference when reviewing React Router Framework Mode, Remix, or Remix-style full-stack React routes with loaders, actions, forms, route modules, revalidation, SSR, or client data APIs.
 
+Also load `references/frontend-structure.md` when route changes involve editable settings screens, tab navigation, reusable UI primitives, or route-level component organization.
+
 ## Review Checklist
 
 - Treat route modules as the review unit for loaders, actions, revalidation, error boundaries, meta/headers, links, and route UI.

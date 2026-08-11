@@ -4,7 +4,7 @@
 
 Review React, React Router, Remix, and Next.js runtime behavior, including hydration, server/client boundaries, stale data, forms, actions, fetchers, loader/action semantics, revalidation, pending UI, mutation state, race conditions, serialization, routing, and error boundaries.
 
-Use `references/react-router-remix.md` or `references/react-next.md` when the coordinator includes them. Use `references/nodejs-typescript.md`, `references/testing.md`, `references/accessibility.md`, or `references/browser-performance.md` when the runtime risk crosses API contracts, tests, accessibility, or performance.
+Use `references/frontend-structure.md`, `references/react-router-remix.md`, or `references/react-next.md` when the coordinator includes them. Use `references/nodejs-typescript.md`, `references/testing.md`, `references/accessibility.md`, or `references/browser-performance.md` when the runtime risk crosses API contracts, tests, accessibility, or performance.
 
 ## Inputs
 
@@ -45,4 +45,8 @@ If there are no findings, state which routing, data, mutation, hydration, and er
 - Serialization changes drop dates, bigints, discriminated unions, validation errors, status codes, or field-level errors.
 - Route changes break deep links, redirects, relative links, nested layouts, back/forward behavior, or scroll/focus restoration.
 - Form changes hide server validation, pending, disabled, or retry state from users.
+- Related editable fields are split into many independent forms instead of one aggregate form with one update action and a confirmation dialog previewing the pending changes.
+- Shared UI primitives are repeated in route or feature files instead of being extracted under `components/ui`.
+- Route-level product UI grows inside route modules instead of being composed from feature components under `components/features`.
+- Primary tab navigation is driven by URL string parameters instead of route structure.
 - Tests cover rendered markup but not navigation, mutation, revalidation, hydration, stale data, or failed request behavior.

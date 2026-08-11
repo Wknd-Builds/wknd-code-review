@@ -25,7 +25,7 @@ Read these files before producing the review:
 2. `references/review-context-gathering.md`.
 3. `references/review-decision-model.md`.
 4. `references/output-modes.md`.
-5. Relevant stack references based on the risk map: `references/nodejs-typescript.md`, `references/react-router-remix.md`, `references/react-next.md`, `references/prisma-postgres.md`, `references/auth-sessions.md`, `references/testing.md`, `references/ci-deployment.md`, `references/accessibility.md`, `references/browser-performance.md`, `references/observability.md`, `references/dependency-security.md`, and `references/react-native-expo.md`.
+5. Relevant stack references based on the risk map: `references/nodejs-typescript.md`, `references/frontend-structure.md`, `references/react-router-remix.md`, `references/react-next.md`, `references/prisma-postgres.md`, `references/auth-sessions.md`, `references/testing.md`, `references/ci-deployment.md`, `references/accessibility.md`, `references/browser-performance.md`, `references/observability.md`, `references/dependency-security.md`, and `references/react-native-expo.md`.
 6. Relevant specialist prompts from `agents/`: `agents/appsec-auth-reviewer.md`, `agents/data-migrations-reviewer.md`, `agents/test-strategy-reviewer.md`, `agents/frontend-runtime-reviewer.md`, `agents/accessibility-reviewer.md`, `agents/performance-reviewer.md`, `agents/dependency-supply-chain-reviewer.md`, `agents/ci-deployment-reviewer.md`, `agents/observability-reviewer.md`, and `agents/react-native-expo-reviewer.md`.
 7. `references/github-posting.md` whenever the user asks for GitHub draft comments or explicitly asks to post, submit, publish, approve/request changes, or otherwise send review content to GitHub.
 
